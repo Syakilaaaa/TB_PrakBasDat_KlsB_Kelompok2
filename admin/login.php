@@ -1,51 +1,80 @@
 <?php
 session_start();
-include '../config/db.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $conn->real_escape_string($_POST['username']);
-    $password = $_POST['password']; 
+$password_correct = 'admin123';
 
-    // Mencocokkan akun petugas admin Resto
-    $query = "SELECT * FROM admin WHERE username='$username' AND password='$password'";
-    $result = $conn->query($query);
-
-    if ($result && $result->num_rows > 0) {
-        $_SESSION['admin_logged'] = true;
-        $_SESSION['admin_nama'] = $username; 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_POST['password'] === $password_correct) {
+        $_SESSION['admin_login'] = true;
         header("Location: index.php");
         exit;
     } else {
-        $error = "Akun tidak terdaftar atau password keliru meow~";
+        $error = "Password salah!";
     }
+}
+
+if (isset($_SESSION['admin_login']) && $_SESSION['admin_login'] === true) {
+    header("Location: index.php");
+    exit;
 }
 ?>
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Login Admin - NyamMeow</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <title>Login Kasir - NyamMeow</title>
     <style>
-        .login-box { max-width: 400px; margin: 80px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); text-align: center; }
-        .form-input { width: 100%; padding: 11px; margin: 10px 0; border: 1px solid #ccc; border-radius: 8px; font-size: 14px; }
-        .btn-login { width: 100%; padding: 11px; background: #FF8C42; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #FF8C42, #f7c56e);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .login-box {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 350px;
+        }
+        .login-box h2 { color: #FF8C42; margin-bottom: 20px; }
+        .login-box input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        .login-box button {
+            background: #FF8C42;
+            color: white;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .login-box button:hover { background: #E6781A; }
+        .error { color: red; margin-bottom: 10px; }
+        .back-link { display: block; margin-top: 15px; color: #666; text-decoration: none; }
     </style>
 </head>
 <body>
     <div class="login-box">
-        <h2>🐱 Admin Sign In 🐱</h2>
-        <p style="font-size: 13px; color: #666; margin-bottom: 20px;">Silakan masukkan akun kasir yang bertugas shift hari ini</p>
-        
-        <?php if(isset($error)): ?>
-            <p style="color: red; font-size: 13px; margin-bottom: 10px;">⚠️ <?= $error ?></p>
-        <?php endif; ?>
-
-        <form method="POST" action="login.php">
-            <input type="text" name="username" placeholder="Masukkan Username" class="form-input" required>
-            <input type="password" name="password" placeholder="Masukkan Password" class="form-input" required>
-            <button type="submit" name="login" class="btn-login">Masuk ke Dashboard</button>
+        <h2>🐱 Login Kasir NyamMeow</h2>
+        <?php if(isset($error)) echo "<p class='error'>$error</p>"; ?>
+        <form method="POST">
+            <input type="password" name="password" placeholder="Masukkan Password" required>
+            <button type="submit">🔐 Login</button>
         </form>
+        <a href="../index.php" class="back-link">← Kembali ke Halaman Pelanggan</a>
     </div>
 </body>
 </html>
