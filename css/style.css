@@ -1,0 +1,171 @@
+/* ==========================================================================
+   STYLE NYAMMEOW RESTO - TEMA KUCING ORANYE CUTE
+   ========================================================================== */
+
+/* 1. Reset Dasar & Tipografi global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f7f9fc;
+    color: #333333;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* 2. Pembungkus Konten Utama (Aplikasi & Dashboard Admin) */
+.container {
+    width: 100%;
+    max-width: 1000px;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* 3. Header Lucu Khas NyamMeow */
+.header {
+    text-align: center;
+    padding: 25px 0;
+    background: linear-gradient(135deg, #FF8C42, #FFA566);
+    color: #ffffff;
+    border-radius: 15px;
+    margin-bottom: 25px;
+}
+
+.header h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.header p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* 4. Menu Navigasi Model Tab (Pelanggan & Admin) */
+.nav {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #eeeeee;
+    padding-bottom: 10px;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #666666;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.nav a:hover {
+    background: #fff0e6;
+    color: #FF8C42;
+}
+
+.nav a.active {
+    background: #FF8C42;
+    color: #ffffff;
+}
+
+/* 5. Desain Tabel Menu & Tabel Antrean Admin */
+.menu-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.menu-table th {
+    background-color: #333333;
+    color: #ffffff;
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.menu-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eeeeeef5;
+    vertical-align: middle;
+    font-size: 15px;
+}
+
+.menu-table tr:hover {
+    background-color: #fafafa;
+}
+
+/* Input angka jumlah pesanan */
+.menu-table input[type="number"] {
+    width: 60px;
+    padding: 6px;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    text-align: center;
+}
+
+/* 6. Desain Badges Status Berjenjang (Sesuai dengan riwayat.php) */
+.status-menunggu {
+    background-color: #FF8C42;
+    color: #ffffff;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.status-dibayar {
+    background-color: #28a745;
+    color: #ffffff;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.status-masak {
+    background-color: #17a2b8;
+    color: #ffffff;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.status-selesai {
+    background-color: #6c757d;
+    color: #ffffff;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+/* 7. Kelas Tombol Aksi */
+.btn-action {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.2s ease, opacity 0.2s ease;
