@@ -1,171 +1,501 @@
-/* ==========================================================================
-   STYLE NYAMMEOW RESTO - TEMA KUCING ORANYE CUTE
-   ========================================================================== */
+/* ========== GOOGLE FONTS ========== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Poppins:wght@400;500;600;700&display=swap');
 
-/* 1. Reset Dasar & Tipografi global */
+/* ========== VARIABLES ========== */
+:root {
+    --primary: #FF8C42;
+    --primary-dark: #E6781A;
+    --secondary: #A8E6CF;
+    --secondary-dark: #7BC9A5;
+    --background: #FFFAF5;
+    --card-bg: #FFFFFF;
+    --text: #333333;
+    --text-light: #666666;
+    --border: #F0E5D8;
+    --shadow: 0 10px 30px rgba(0,0,0,0.08);
+    --shadow-hover: 0 20px 40px rgba(0,0,0,0.12);
+    --radius: 20px;
+    --radius-sm: 12px;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    background-color: #f7f9fc;
-    color: #333333;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.5;
 }
 
-/* 2. Pembungkus Konten Utama (Aplikasi & Dashboard Admin) */
 .container {
-    width: 100%;
-    max-width: 1000px;
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
 }
 
-/* 3. Header Lucu Khas NyamMeow */
+/* ========== HEADER ========== */
 .header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+    padding: 48px 40px;
+    border-radius: var(--radius);
+    margin: 20px 0 24px;
     text-align: center;
-    padding: 25px 0;
-    background: linear-gradient(135deg, #FF8C42, #FFA566);
-    color: #ffffff;
-    border-radius: 15px;
-    margin-bottom: 25px;
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: "🐱 🐾 🐱 🐾";
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    font-size: 40px;
+    opacity: 0.1;
+    white-space: nowrap;
 }
 
 .header h1 {
-    font-size: 28px;
-    margin-bottom: 5px;
-    letter-spacing: 1px;
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
 }
 
 .header p {
-    font-size: 14px;
-    opacity: 0.9;
+    font-size: 18px;
+    opacity: 0.95;
 }
 
-/* 4. Menu Navigasi Model Tab (Pelanggan & Admin) */
+/* ========== NAVIGATION ========== */
 .nav {
+    background: var(--card-bg);
+    border-radius: 60px;
+    padding: 8px;
+    margin-bottom: 32px;
     display: flex;
-    gap: 10px;
-    margin-bottom: 25px;
-    border-bottom: 2px solid #eeeeee;
-    padding-bottom: 10px;
+    gap: 8px;
+    box-shadow: var(--shadow);
 }
 
 .nav a {
+    flex: 1;
+    text-align: center;
     text-decoration: none;
-    color: #666666;
-    padding: 10px 20px;
-    border-radius: 30px;
-    font-weight: 600;
-    font-size: 14px;
+    padding: 12px 24px;
+    border-radius: 40px;
+    color: var(--text-light);
+    font-weight: 500;
     transition: all 0.3s ease;
 }
 
 .nav a:hover {
-    background: #fff0e6;
-    color: #FF8C42;
+    background: var(--primary);
+    color: white;
 }
 
-.nav a.active {
-    background: #FF8C42;
-    color: #ffffff;
+/* ========== MEJA SECTION ========== */
+.meja-section {
+    background: var(--card-bg);
+    padding: 24px;
+    border-radius: var(--radius);
+    margin-bottom: 32px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
 }
 
-/* 5. Desain Tabel Menu & Tabel Antrean Admin */
-.menu-table {
+.form-group {
+    flex: 1;
+    min-width: 180px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--primary-dark);
+}
+
+.form-group select,
+.form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: var(--background);
+}
+
+.form-group select:focus,
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(255,140,66,0.1);
+}
+
+/* ========== MAIN CONTENT ========== */
+.main-content {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+}
+
+.menu-section {
+    flex: 2;
+    min-width: 280px;
+}
+
+.cart-section {
+    flex: 1;
+    min-width: 320px;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 24px;
+    position: sticky;
+    top: 24px;
+    height: fit-content;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+}
+
+/* ========== FILTER BUTTONS ========== */
+.kategori-filter {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 10px 24px;
+    border: 2px solid var(--border);
+    border-radius: 40px;
+    background: white;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+}
+
+/* ========== MENU GRID ========== */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
+}
+
+.menu-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 20px;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border);
+    cursor: pointer;
+}
+
+.menu-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--primary);
+}
+
+.menu-emoji {
+    font-size: 56px;
+    margin-bottom: 12px;
+}
+
+.menu-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.harga {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 12px 0;
+}
+
+.btn-tambah {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 40px;
+    width: 100%;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-tambah:hover {
+    background: var(--primary-dark);
+    transform: scale(1.02);
+}
+
+/* ========== CART ========== */
+.cart-section h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--primary);
+    color: var(--primary-dark);
+}
+
+.empty-cart {
+    text-align: center;
+    color: var(--text-light);
+    padding: 40px 0;
+}
+
+.cart-table {
+    width: 100%;
+    font-size: 14px;
+}
+
+.cart-table td {
+    padding: 8px 0;
+}
+
+.qty-btn {
+    background: var(--border);
+    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.qty-btn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.hapus-btn {
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.cart-total {
+    margin: 16px 0;
+    padding-top: 12px;
+    border-top: 2px solid var(--border);
+    text-align: right;
+    font-size: 20px;
+    color: var(--primary);
+}
+
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin: 16px 0;
+    resize: vertical;
+    font-family: inherit;
+    background: var(--background);
+}
+
+.btn-checkout {
+    background: var(--secondary);
+    color: var(--text);
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-checkout:hover {
+    background: var(--secondary-dark);
+    transform: scale(1.02);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 16px;
+    }
+    
+    .header h1 {
+        font-size: 32px;
+    }
+    
+    .header {
+        padding: 32px 20px;
+    }
+    
+    .menu-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .nav a {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+    
+    .cart-section {
+        position: static;
+    }
+}
+
+/* ========== STYLE UNTUK RIWAYAT & DETAIL ========== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.riwayat-container {
+    overflow-x: auto;
+}
+
+.riwayat-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 15px;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
 }
 
-.menu-table th {
-    background-color: #333333;
-    color: #ffffff;
-    padding: 12px 15px;
+.riwayat-table th {
+    background: #FF8C42;
+    color: white;
+    padding: 12px;
     text-align: left;
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
 }
 
-.menu-table td {
-    padding: 15px;
-    border-bottom: 1px solid #eeeeeef5;
-    vertical-align: middle;
-    font-size: 15px;
+.riwayat-table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
 }
 
-.menu-table tr:hover {
-    background-color: #fafafa;
+.riwayat-table tr:hover {
+    background: #FFF5EB;
 }
 
-/* Input angka jumlah pesanan */
-.menu-table input[type="number"] {
-    width: 60px;
-    padding: 6px;
-    border: 1px solid #cccccc;
-    border-radius: 6px;
-    text-align: center;
-}
-
-/* 6. Desain Badges Status Berjenjang (Sesuai dengan riwayat.php) */
-.status-menunggu {
-    background-color: #FF8C42;
-    color: #ffffff;
-    padding: 5px 14px;
+.status-diproses {
+    background: #FFE0B5;
+    color: #E6781A;
+    padding: 4px 12px;
     border-radius: 20px;
     font-size: 12px;
     font-weight: bold;
-    display: inline-block;
-}
-
-.status-dibayar {
-    background-color: #28a745;
-    color: #ffffff;
-    padding: 5px 14px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: bold;
-    display: inline-block;
-}
-
-.status-masak {
-    background-color: #17a2b8;
-    color: #ffffff;
-    padding: 5px 14px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: bold;
-    display: inline-block;
 }
 
 .status-selesai {
-    background-color: #6c757d;
-    color: #ffffff;
-    padding: 5px 14px;
+    background: #A8E6CF;
+    color: #2D6A4F;
+    padding: 4px 12px;
     border-radius: 20px;
     font-size: 12px;
     font-weight: bold;
-    display: inline-block;
 }
 
-/* 7. Kelas Tombol Aksi */
-.btn-action {
-    display: inline-block;
-    padding: 8px 16px;
-    border-radius: 20px;
+.btn-detail {
+    background: #FF8C42;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 15px;
     text-decoration: none;
-    font-size: 13px;
-    font-weight: bold;
-    color: #ffffff;
+    font-size: 12px;
+}
+
+.btn-detail:hover {
+    background: #E6781A;
+}
+
+.export-buttons {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.btn-export {
+    padding: 8px 16px;
     border: none;
+    border-radius: 8px;
     cursor: pointer;
+    font-weight: bold;
+    color: white;
+}
+
+.btn-export-excel {
+    background: #1D6F42;
+}
+
+.btn-export-copy {
+    background: #17a2b8;
+}
+
+.empty-riwayat {
     text-align: center;
-    transition: transform 0.2s ease, opacity 0.2s ease;
+    padding: 40px;
+    color: #999;
+}
+.payment-section {
+    margin: 15px 0;
+    padding: 10px;
+    background: #FFF5EB;
+    border-radius: 12px;
+}
+
+.payment-section label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #FF8C42;
+}
+
+.payment-options {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 8px 15px;
+    background: white;
+    border-radius: 25px;
+    border: 1px solid #e0e0e0;
+}
+
+.payment-option input {
+    width: auto;
+    margin: 0;
+}
+
+.payment-option:has(input:checked) {
+    background: #A8E6CF;
+    border-color: #2D6A4F;
+}
