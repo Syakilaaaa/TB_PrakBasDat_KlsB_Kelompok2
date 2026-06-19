@@ -1,6 +1,14 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "nyammeow_db");
+$host = 'localhost';
+$user = 'root';
+$pass = '';
+$db   = 'nyammeow_db';
+
+$conn = new mysqli($host, $user, $pass, $db);
+
 if ($conn->connect_error) {
-    die("Koneksi gagal meow~: " . $conn->connect_error);
+    die("Koneksi gagal: " . $conn->connect_error);
 }
+
+$conn->set_charset("utf8");
 ?>
