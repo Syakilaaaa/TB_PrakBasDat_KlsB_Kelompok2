@@ -4,257 +4,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NyamMeow - Riwayat Pesanan</title>
+    <title>NyamMeow - Riwayat Pesanan Saya</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
-        /* Style tambahan khusus riwayat */
-        .riwayat-container {
-            background: white;
-            border-radius: 20px;
-            padding: 20px;
-            overflow-x: auto;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        
-        .riwayat-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        .riwayat-table th,
-        .riwayat-table td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        
-        .riwayat-table th {
-            background: #FF8C42;
-            color: white;
-            font-weight: 600;
-        }
-        
-        .riwayat-table tr:hover {
-            background: #FFF5EB;
-        }
-        
-        .status-diproses {
-            background: #FFE0B5;
-            color: #E6781A;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            display: inline-block;
-        }
-        
-        .status-selesai {
-            background: #A8E6CF;
-            color: #2D6A4F;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            display: inline-block;
-        }
-        
-        .btn-detail {
-            background: #FF8C42;
-            color: white;
-            padding: 6px 14px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-size: 12px;
-            font-weight: 500;
-            transition: 0.3s;
-            display: inline-block;
-        }
-        
-        .btn-detail:hover {
-            background: #E6781A;
-        }
-        
-        .export-buttons {
+        .status-menunggu { background: #FF8C42; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; display: inline-block; }
+        .status-dibayar { background: #28a745; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; display: inline-block; }
+        .status-masak { background: #17a2b8; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; display: inline-block; }
+        .status-selesai { background: #6c757d; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; display: inline-block; }
+        .riwayat-container { background: white; border-radius: 20px; padding: 20px; overflow-x: auto; margin-top: 20px; }
+        .riwayat-table { width: 100%; border-collapse: collapse; }
+        .riwayat-table th, .riwayat-table td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+        .riwayat-table th { background: #FF8C42; color: white; }
+        .btn-detail { background: #FF8C42; color: white; padding: 5px 12px; border-radius: 15px; text-decoration: none; font-size: 12px; }
+        .search-box { 
+            background: white; 
+            padding: 20px; 
+            border-radius: 15px; 
             margin-bottom: 20px;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        
-        .btn-export {
-            background: #28a745;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: 0.3s;
-        }
-        
-        .btn-export:hover {
-            background: #218838;
-        }
-        
-        .btn-export-excel {
-            background: #1D6F42;
-        }
-        
-        .btn-export-copy {
-            background: #17a2b8;
-        }
-        
-        .alert {
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        
-        .alert-success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        
-        .empty-riwayat {
             text-align: center;
-            padding: 50px;
-            color: #999;
-            background: white;
-            border-radius: 20px;
         }
-        
-        @media (max-width: 768px) {
-            .riwayat-table th,
-            .riwayat-table td {
-                padding: 8px 10px;
-                font-size: 12px;
-            }
-            
-            .btn-export {
-                padding: 8px 15px;
-                font-size: 12px;
-            }
+        .search-box input { 
+            padding: 12px; 
+            width: 70%; 
+            max-width: 300px; 
+            border-radius: 10px; 
+            border: 1px solid #ddd;
+            margin-right: 10px;
         }
+        .search-box button {
+            padding: 12px 24px;
+            background: #FF8C42;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .alert-success { background: #d4edda; color: #155724; padding: 15px; border-radius: 10px; margin-bottom: 20px; }
+        .info-text { color: #666; text-align: center; margin-bottom: 20px; }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🐱 RIWAYAT PESANAN NYAMMEOW 🐱</h1>
-            <p>Lihat dan export pesanan Meow-mu di sini</p>
+            <h1>🐱 RIWAYAT PESANAN SAYA 🐱</h1>
+            <p>Cek status pesanan Anda di sini</p>
         </div>
 
         <div class="nav">
             <a href="index.php">🏠 Menu</a>
-            <a href="riwayat.php">📋 Riwayat Pesanan</a>
+            <a href="riwayat.php">📋 Riwayat Saya</a>
         </div>
 
         <?php if(isset($_GET['sukses'])): ?>
-            <div class="alert alert-success">✅ Pesanan berhasil disimpan meow!</div>
+            <div class="alert alert-success">✅ Pesanan berhasil! Simpan nota untuk ditunjukkan ke kasir.</div>
         <?php endif; ?>
 
-        <div class="export-buttons">
-            <button onclick="exportToExcel()" class="btn-export btn-export-excel">📊 Export ke Excel</button>
-            <button onclick="copyToClipboard()" class="btn-export btn-export-copy">📋 Salin Tabel</button>
+        <!-- Form Pencarian Nama -->
+        <div class="search-box">
+            <form method="GET" action="">
+                <input type="text" name="nama" placeholder="Masukkan nama pemesan" value="<?= isset($_GET['nama']) ? htmlspecialchars($_GET['nama']) : '' ?>" required>
+                <button type="submit">🔍 Lihat Pesanan Saya</button>
+            </form>
+            <p class="info-text">💡 Masukkan nama yang Anda gunakan saat memesan</p>
         </div>
 
-        <div class="riwayat-container" id="riwayatTable">
+        <div class="riwayat-container">
             <?php
-            $sql = "SELECT p.*, 
-                           (SELECT SUM(subtotal) FROM detail_pesanan WHERE pesanan_id = p.id) as total_detail
-                    FROM pesanan p 
-                    ORDER BY p.tanggal_pesan DESC";
-            $result = $conn->query($sql);
+            $nama_pemesan = isset($_GET['nama']) ? $_GET['nama'] : '';
             
-            if($result->num_rows == 0):
+            if ($nama_pemesan == ''):
             ?>
-                <p class="empty-riwayat">🐾 Belum ada pesanan meow~ Yuk pesan dulu!</p>
+                <p class="empty-riwayat">🐾 Masukkan nama Anda di atas untuk melihat riwayat pesanan.</p>
+            <?php else:
+                // Hanya tampilkan pesanan dengan nama yang sesuai
+                $sql = "SELECT * FROM pesanan WHERE nama_pemesan LIKE '%" . $conn->real_escape_string($nama_pemesan) . "%' ORDER BY tanggal_pesan DESC";
+                $result = $conn->query($sql);
+                
+                if($result->num_rows == 0):
+            ?>
+                <p class="empty-riwayat">🐾 Tidak ada pesanan dengan nama "<?= htmlspecialchars($nama_pemesan) ?>". Yuk pesan dulu!</p>
             <?php else: ?>
                 <table class="riwayat-table" id="tabelRiwayat">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Meja</th>
-                            <th>Pemesan</th>
-                            <th>Total</th>
-                            <th>Status</th>
-                            <th>Catatan</th>
-                            <th>Waktu</th>
-                            <th>Aksi</th>
+                            <th>ID</th><th>Meja</th><th>Total</th><th>Status</th><th>Metode</th><th>Waktu</th><th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php while($row = $result->fetch_assoc()): ?>
+                        <?php while($row = $result->fetch_assoc()): 
+                            $status_class = '';
+                            if($row['status'] == 'Menunggu Pembayaran') $status_class = 'status-menunggu';
+                            elseif($row['status'] == 'Dibayar') $status_class = 'status-dibayar';
+                            elseif($row['status'] == 'Sedang Dimasak') $status_class = 'status-masak';
+                            else $status_class = 'status-selesai';
+                        ?>
                         <tr>
                             <td>#<?= $row['id'] ?></td>
                             <td>Meja <?= $row['no_meja'] ?></td>
-                            <td><?= htmlspecialchars($row['nama_pemesan']) ?></td>
                             <td>Rp <?= number_format($row['total_harga'], 0, ',', '.') ?></td>
-                            <td>
-                                <span class="status-<?= strtolower($row['status']) ?>">
-                                    <?= $row['status'] ?>
-                                </span>
-                            </td>
-                            <td><?= htmlspecialchars(substr($row['catatan'] ?? '-', 0, 50)) ?> 
-                             <?= strlen($row['catatan'] ?? '') > 50 ? '...' : '' ?> 
-                            </td>
+                            <td><span class="<?= $status_class ?>"><?= $row['status'] ?></span></td>
+                            <td><?= $row['metode_pembayaran'] ?? 'Cash' ?></td>
                             <td><?= date('d/m/Y H:i', strtotime($row['tanggal_pesan'])) ?></td>
                             <td>
-                                <a href="detail_pesanan.php?id=<?= $row['id'] ?>" class="btn-detail">🐱 Detail</a>
+                                <a href="nota_pesanan.php?id=<?= $row['id'] ?>" class="btn-detail">🐱 Lihat Nota</a>
                             </td>
                         </tr>
                         <?php endwhile; ?>
                     </tbody>
                 </table>
-            <?php endif; ?>
+            <?php endif; endif; ?>
         </div>
     </div>
-
-    <script>
-        function exportToExcel() {
-            let table = document.getElementById("tabelRiwayat");
-            if (!table) {
-                alert("Tidak ada data untuk di export!");
-                return;
-            }
-            
-            let html = table.outerHTML;
-            let blob = new Blob([html], { type: "application/vnd.ms-excel" });
-            let link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.download = "riwayat_pesanan_nyammeow.xls";
-            link.click();
-            URL.revokeObjectURL(link.href);
-        }
-
-        function copyToClipboard() {
-            let table = document.getElementById("tabelRiwayat");
-            if (!table) {
-                alert("Tidak ada data untuk di salin!");
-                return;
-            }
-            
-            let range = document.createRange();
-            range.selectNode(table);
-            window.getSelection().removeAllRanges();
-            window.getSelection().addRange(range);
-            
-            try {
-                document.execCommand('copy');
-                alert("✅ Tabel berhasil disalin! Sekarang bisa di-paste ke Excel, Google Sheets, atau dokumen lain.");
-            } catch(err) {
-                alert("❌ Gagal menyalin. Silakan coba manual dengan seleksi tabel.");
-            }
-            
-            window.getSelection().removeAllRanges();
-        }
-    </script>
 </body>
 </html>
