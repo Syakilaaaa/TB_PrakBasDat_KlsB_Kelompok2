@@ -1,25 +1,24 @@
 <?php
 session_start();
-include '../config/db.php';
-
-if (!isset($_SESSION['admin_logged'])) {
+if (!isset($_SESSION['admin_login']) || $_SESSION['admin_login'] !== true) {
     header("Location: login.php");
     exit;
 }
 
-if (isset($_GET['id']) && isset($_GET['status'])) {
-    $id = (int)$_GET['id'];
-    $status_baru = $conn->real_escape_string($_GET['status']);
-    $admin_aktif = $conn->real_escape_string($_SESSION['admin_nama']);
+include '../config/db.php';
 
-    $query = "UPDATE pesanan SET status = '$status_baru'";
-    if ($status_baru === 'Dibayar') {
-        $query .= ", waktu_dibayar = NOW(), dikonfirmasi_oleh = '$admin_aktif'";
-    }
-    $query .= " WHERE id = $id";
+$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+$status = isset($_GET['status']) ? $_GET['status'] : '';
+
+$allowed_status = ['Menunggu Pembayaran', 'Dibayar', 'Sedang Dimasak', 'Selesai'];
+
+if ($id > 0 && in_array($status, $allowed_status)) {
+    $conn->query("UPDATE pesanan SET status = '$status' WHERE id = $id");
     
-    $conn->query($query);
+    if ($status == 'Dibayar') {
+        $conn->query("UPDATE pesanan SET waktu_dibayar = NOW() WHERE id = $id");
+    }
 }
 
 header("Location: index.php");
-exit;
+?>
